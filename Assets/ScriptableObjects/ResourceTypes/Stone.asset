@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd67a499f4482e44c8c924e937e0e5ee, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  sName: 
+  sName: Stone
