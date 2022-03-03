@@ -24,7 +24,7 @@ public class ResourceManager : MonoBehaviour
 
   private void Start()
   {
-    Test_LogResourceAmounts();
+    // Test_LogResourceAmounts();
   }
 
   private void Update()
