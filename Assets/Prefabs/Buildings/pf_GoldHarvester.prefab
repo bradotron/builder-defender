@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4241080218636159858}
   - component: {fileID: 4542957964585485456}
   - component: {fileID: 2944993410718095793}
+  - component: {fileID: 5531642522911278454}
   m_Layer: 0
   m_Name: pf_GoldHarvester
   m_TagString: Untagged
@@ -58,6 +59,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: {fileID: 11400000, guid: 79f1d269772c0dc4e805590b72082ee2, type: 2}
+--- !u!61 &5531642522911278454
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3776549591353609223}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04885912, y: -0.32246792}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.8272467, y: 3.9119833}
+  m_EdgeRadius: 0
 --- !u!1 &5768725619669751270
 GameObject:
   m_ObjectHideFlags: 0

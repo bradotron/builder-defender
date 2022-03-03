@@ -12,6 +12,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
 
   [SerializeField] private Sprite cursorSprite;
   private Transform cursorBtn;
+  [SerializeField] List<BuildingTypeSO> ignoreBuildingTypeList;
 
   private float offsetAmount = 130f;
   private void Awake()
@@ -39,6 +40,11 @@ public class BuildingTypeSelectUI : MonoBehaviour
     i++;
     foreach (BuildingTypeSO buildingType in buildingTypeList.list)
     {
+      if (ignoreBuildingTypeList.Contains(buildingType))
+      {
+        continue;
+      }
+
       Transform btnTransform = Instantiate(btnTemplate, transform);
       btnTransform.gameObject.SetActive(true);
 
