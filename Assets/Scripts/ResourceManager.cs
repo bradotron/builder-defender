@@ -49,4 +49,25 @@ public class ResourceManager : MonoBehaviour
       Debug.Log(resourceType.sName + ": " + resourceAmounts[resourceType]);
     }
   }
+
+  public bool CanAfford(ResourceAmount[] resourceCosts, out string errorMessage)
+  {
+    foreach (ResourceAmount resourceAmount in resourceCosts)
+    {
+      if(GetResourceAmount(resourceAmount.resourceType) < resourceAmount.amount ) {
+        errorMessage = "Insufficient " + resourceAmount.resourceType.sName;
+        return false;
+      }
+    }
+    errorMessage = "";
+    return true;
+  }
+
+  public void SpendResources(ResourceAmount[] resourceCosts)
+  {
+    foreach (ResourceAmount resourceAmount in resourceCosts)
+    {
+      this.AddResource(resourceAmount.resourceType, -resourceAmount.amount);
+    }
+  }
 }

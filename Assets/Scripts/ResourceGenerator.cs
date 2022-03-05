@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
+  public static float GetNearbyResourceNodeCount(Vector3 position, ResourceGeneratorData resourceGeneratorData)
+  {
+    Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(position, resourceGeneratorData.resourceDetectionRadius);
+    float nearbyResourceNodes = 0;
+    foreach (Collider2D collider2D in collider2DArray)
+    {
+      ResourceNode resourceNode = collider2D.GetComponent<ResourceNode>();
+      if (resourceNode != null && resourceNode.resourceType == resourceGeneratorData.resourceType)
+      {
+        nearbyResourceNodes++;
+      }
+    }
+
+    nearbyResourceNodes = Mathf.Clamp(nearbyResourceNodes, 0, resourceGeneratorData.maxResourceCollection);
+
+    return nearbyResourceNodes;
+  }
+
+
   private ResourceGeneratorData resourceGeneratorData;
   private float currentGeneratorCooldown = 0f;
   private float generatorCooldown;
@@ -16,28 +35,18 @@ public class ResourceGenerator : MonoBehaviour
 
   private void Start()
   {
-    Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(transform.position, resourceGeneratorData.resourceDetectionRadius);
-    int nearbyResourceNodes = 0;
-    foreach (Collider2D collider2D in collider2DArray)
-    {
-      ResourceNode resourceNode = collider2D.GetComponent<ResourceNode>();
-      if (resourceNode != null && resourceNode.resourceType == resourceGeneratorData.resourceType)
-      {
-        nearbyResourceNodes++;
-      }
-    }
+    float nearbyResourceNodes = GetNearbyResourceNodeCount(transform.position, resourceGeneratorData);
 
-    nearbyResourceNodes = Mathf.Clamp(nearbyResourceNodes, 0, resourceGeneratorData.maxResourceCollection);
-    
-    if (nearbyResourceNodes == 0)
+    if (nearbyResourceNodes == 0f)
     {
       enabled = false; // disable to avoid wasted calls
     }
     else
     {
-      float a = resourceGeneratorData.generatorCooldown * 2;
-      float b = resourceGeneratorData.generatorCooldown / 2;
+      float a = generatorCooldown * 2.0f;
+      float b = generatorCooldown / 2.0f;
       float t = nearbyResourceNodes / resourceGeneratorData.maxResourceCollection;
+
       generatorCooldown = Mathf.Lerp(a, b, t);
     }
   }
@@ -64,10 +73,11 @@ public class ResourceGenerator : MonoBehaviour
 
   public float GetAmountGeneratedPerSecond()
   {
-    if(!enabled) {
+    if (!enabled)
+    {
       return 0;
     }
 
-    return 1 / generatorCooldown;
+    return 1.0f / generatorCooldown;
   }
 }

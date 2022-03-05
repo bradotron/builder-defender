@@ -8,5 +8,5 @@ public class ResourceGeneratorData
   public float generatorCooldown;
   public ResourceTypeSO resourceType;
   public float resourceDetectionRadius;
-  public int maxResourceCollection;
+  public float maxResourceCollection;
 }
