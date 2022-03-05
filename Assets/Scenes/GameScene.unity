@@ -18280,6 +18280,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 186708451}
     m_Modifications:
+    - target: {fileID: 2077625306912703018, guid: 1cd001f67e00daf48ad7a35205603754, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077625306912703018, guid: 1cd001f67e00daf48ad7a35205603754, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.98
+      objectReference: {fileID: 0}
     - target: {fileID: 4367956533625651730, guid: 1cd001f67e00daf48ad7a35205603754, type: 3}
       propertyPath: m_Name
       value: pf_WoodResourceNode (9)
@@ -29490,11 +29498,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5033629705607804778, guid: 1cd001f67e00daf48ad7a35205603754, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.282869
+      value: 12.77
       objectReference: {fileID: 0}
     - target: {fileID: 5033629705607804778, guid: 1cd001f67e00daf48ad7a35205603754, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.213324
+      value: 10.99
       objectReference: {fileID: 0}
     - target: {fileID: 5033629705607804778, guid: 1cd001f67e00daf48ad7a35205603754, type: 3}
       propertyPath: m_LocalPosition.z

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResourceGenerator : MonoBehaviour
 {
   private ResourceGeneratorData resourceGeneratorData;
-  private float timeSinceGeneration = 0f;
+  private float currentGeneratorCooldown = 0f;
   private float generatorCooldown;
 
   private void Awake()
@@ -28,7 +28,7 @@ public class ResourceGenerator : MonoBehaviour
     }
 
     nearbyResourceNodes = Mathf.Clamp(nearbyResourceNodes, 0, resourceGeneratorData.maxResourceCollection);
-
+    
     if (nearbyResourceNodes == 0)
     {
       enabled = false; // disable to avoid wasted calls
@@ -44,11 +44,30 @@ public class ResourceGenerator : MonoBehaviour
 
   void Update()
   {
-    timeSinceGeneration += Time.deltaTime;
-    if (timeSinceGeneration >= resourceGeneratorData.generatorCooldown)
+    currentGeneratorCooldown += Time.deltaTime;
+    if (currentGeneratorCooldown >= generatorCooldown)
     {
-      timeSinceGeneration = 0f;
+      currentGeneratorCooldown = 0f;
       ResourceManager.Instance.AddResource(resourceGeneratorData.resourceType, 1);
     }
+  }
+
+  public ResourceGeneratorData GetResourceGeneratorData()
+  {
+    return resourceGeneratorData;
+  }
+
+  public float GetCooldownNormalized()
+  {
+    return currentGeneratorCooldown / generatorCooldown;
+  }
+
+  public float GetAmountGeneratedPerSecond()
+  {
+    if(!enabled) {
+      return 0;
+    }
+
+    return 1 / generatorCooldown;
   }
 }
