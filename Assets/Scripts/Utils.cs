@@ -21,4 +21,11 @@ public static class Utils
       UnityEngine.Random.Range(-1f, 1f)
     ).normalized;
   }
+
+// returns the angle of the vector in degrees; 0 degrees is along the positive x-axis to the right
+// 
+  public static float GetAngleOfVector(Vector3 vector) {
+    float radians = Mathf.Atan2(vector.y, vector.x);
+    return radians * Mathf.Rad2Deg;
+  }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
   }
   private Transform targetBuildingTransform;
   private Rigidbody2D rb2D;
+  private HealthSystem healthSystem;
   private float targetDetectionRadius = 10f;
   private float detectionCooldown = 0.3f;
   private float currentDetectionCooldown = 0f;
@@ -21,10 +23,12 @@ public class Enemy : MonoBehaviour
   private void Awake()
   {
     rb2D = GetComponent<Rigidbody2D>();
-    currentDetectionCooldown = Random.Range(0f, detectionCooldown);
+    currentDetectionCooldown = UnityEngine.Random.Range(0f, detectionCooldown);
   }
   private void Start()
   {
+    healthSystem = GetComponent<HealthSystem>();
+    healthSystem.OnDied += HealthSystem_OnDied;
     TargetHQ();
   }
 
@@ -100,5 +104,10 @@ public class Enemy : MonoBehaviour
   private void TargetHQ()
   {
     targetBuildingTransform = BuildingManager.Instance.GetHQBuilding().transform;
+  }
+
+  private void HealthSystem_OnDied(object sender, EventArgs e)
+  {
+    Destroy(gameObject);
   }
 }

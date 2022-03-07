@@ -33,8 +33,15 @@ public class BuildingGhost : MonoBehaviour
     }
     else
     {
-      resourceNodesNearbyOverlay.Show(e.activeBuildingType.resourceGeneratorData);
       Show(e.activeBuildingType.sprite);
+      if (e.activeBuildingType.resourceGeneratorData.resourceType != null)
+      {
+        resourceNodesNearbyOverlay.Show(e.activeBuildingType.resourceGeneratorData);
+      }
+      else
+      {
+        resourceNodesNearbyOverlay.Hide();
+      }
     }
   }
 

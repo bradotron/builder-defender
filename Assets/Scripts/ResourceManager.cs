@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+  [SerializeField] private List<ResourceAmount> startingResourceAmounts;
   public static ResourceManager Instance { get; private set; }
   private Dictionary<ResourceTypeSO, int> resourceAmounts;
-
   public event EventHandler OnResourceAmountChanged;
 
   private void Awake()
@@ -20,15 +20,11 @@ public class ResourceManager : MonoBehaviour
     {
       resourceAmounts.Add(resourceType, 0);
     }
-  }
-
-  private void Start()
-  {
-    // Test_LogResourceAmounts();
-  }
-
-  private void Update()
-  {
+    
+    foreach (ResourceAmount resourceAmount in startingResourceAmounts)
+    {
+      AddResource(resourceAmount.resourceType, resourceAmount.amount);
+    }
   }
 
   public void AddResource(ResourceTypeSO resourceType, int amount)
@@ -54,7 +50,8 @@ public class ResourceManager : MonoBehaviour
   {
     foreach (ResourceAmount resourceAmount in resourceCosts)
     {
-      if(GetResourceAmount(resourceAmount.resourceType) < resourceAmount.amount ) {
+      if (GetResourceAmount(resourceAmount.resourceType) < resourceAmount.amount)
+      {
         errorMessage = "Insufficient " + resourceAmount.resourceType.sName;
         return false;
       }
