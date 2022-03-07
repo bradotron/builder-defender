@@ -15,8 +15,6 @@ public class Building : MonoBehaviour
     healthSystem = GetComponent<HealthSystem>();
     healthSystem.SetMaxHealth(buildingType.maxHealthAmount, true);
     healthSystem.OnDied += HealthSystem_OnDied;
-
-    Debug.Log(healthSystem.GetCurrentHealth());
   }
 
   private void HealthSystem_OnDied(object sender, EventArgs e)

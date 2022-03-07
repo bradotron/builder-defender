@@ -9,6 +9,8 @@ public class BuildingManager : MonoBehaviour
   public static BuildingManager Instance { get; private set; }
   private BuildingTypeListSO buildingTypeList;
   private BuildingTypeSO activeBuildingType;
+
+  [SerializeField] private Building hqBuilding;
   public event EventHandler<OnActiveBuildingTypeChangedEventArgs> OnActiveBuildingTypeChanged;
 
   public class OnActiveBuildingTypeChangedEventArgs : EventArgs
@@ -47,6 +49,12 @@ public class BuildingManager : MonoBehaviour
           TooltipUI.Instance.Show(canSpawnError, new TooltipUI.TooltipTimer() { timer = 2f });
         }
       }
+    }
+
+    if (Input.GetKeyDown(KeyCode.T))
+    {
+      Vector3 spawnPosition = Utils.GetMouseWorldPosition();
+      Enemy.CreateAt(spawnPosition);
     }
   }
 
@@ -102,5 +110,10 @@ public class BuildingManager : MonoBehaviour
     }
     errorMessage = "Too far from buildings!";
     return false;
+  }
+
+  public Building GetHQBuilding()
+  {
+    return hqBuilding;
   }
 }
