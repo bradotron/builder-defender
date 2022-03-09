@@ -9,9 +9,11 @@ public class BuildingTypeSO : ScriptableObject
   public Transform prefab;
   public ResourceGeneratorData resourceGeneratorData;
   public Sprite sprite;
+  public Sprite constructionSprite;
   public float minConstructionRadius;
   public ResourceAmount[] constructionResourceCosts;
   public int maxHealthAmount;
+  public float constructionTimerMax;
 
   public string GetConstructionResourceCostsString()
   {

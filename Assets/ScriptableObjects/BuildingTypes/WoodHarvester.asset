@@ -20,8 +20,10 @@ MonoBehaviour:
     resourceDetectionRadius: 8
     maxResourceCollection: 8
   sprite: {fileID: 21300000, guid: 793ca27a5a3378149aaa12abe85933f4, type: 3}
+  constructionSprite: {fileID: 0}
   minConstructionRadius: 7
   constructionResourceCosts:
   - resourceType: {fileID: 11400000, guid: 2c0e830feabd40a49aed0070ff01668a, type: 2}
     amount: 10
   maxHealthAmount: 100
+  constructionTimerMax: 3
