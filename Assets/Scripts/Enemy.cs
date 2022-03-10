@@ -103,7 +103,10 @@ public class Enemy : MonoBehaviour
 
   private void TargetHQ()
   {
-    targetBuildingTransform = BuildingManager.Instance.GetHQBuilding().transform;
+    if (BuildingManager.Instance.GetHQBuilding() != null)
+    {
+      targetBuildingTransform = BuildingManager.Instance.GetHQBuilding().transform;
+    }
   }
 
   private void HealthSystem_OnDied(object sender, EventArgs e)
