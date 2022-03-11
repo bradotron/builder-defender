@@ -6,16 +6,17 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
   private int currentHealthAmount;
-  [SerializeField]
-  private int maxHealthAmount;
+  [SerializeField] private int maxHealthAmount;
 
   public event EventHandler OnDamaged;
+  public event EventHandler OnHealed;
   public event EventHandler OnDied;
 
   private void Awake()
   {
     currentHealthAmount = maxHealthAmount;
   }
+
   public void SetMaxHealth(int newMaxHealth, bool updateCurrentHealth)
   {
     maxHealthAmount = newMaxHealth;
@@ -25,6 +26,12 @@ public class HealthSystem : MonoBehaviour
       currentHealthAmount = maxHealthAmount;
     }
   }
+
+  public int GetMaxHealth()
+  {
+    return maxHealthAmount;
+  }
+
   public void Damage(int damageAmount)
   {
     currentHealthAmount -= damageAmount;
@@ -35,6 +42,19 @@ public class HealthSystem : MonoBehaviour
     {
       OnDied?.Invoke(this, EventArgs.Empty);
     }
+  }
+
+  public void Heal(int healAmount)
+  {
+    currentHealthAmount += healAmount;
+    currentHealthAmount = Mathf.Clamp(currentHealthAmount, 0, maxHealthAmount);
+    OnHealed?.Invoke(this, EventArgs.Empty);
+  }
+
+  public void HealFull()
+  {
+    currentHealthAmount = maxHealthAmount;
+    OnHealed?.Invoke(this, EventArgs.Empty);
   }
 
   public bool IsDead()
