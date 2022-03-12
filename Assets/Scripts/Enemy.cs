@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
   {
     healthSystem = GetComponent<HealthSystem>();
     healthSystem.OnDied += HealthSystem_OnDied;
+    healthSystem.OnDamaged += HealthSystem_OnDamaged;
     TargetHQ();
   }
 
@@ -111,6 +112,11 @@ public class Enemy : MonoBehaviour
 
   private void HealthSystem_OnDied(object sender, EventArgs e)
   {
+    SoundManager.Instance.PlaySound(SoundManager.SoundName.EnemyDie);
     Destroy(gameObject);
+  }
+  private void HealthSystem_OnDamaged(object sender, EventArgs e)
+  {
+    SoundManager.Instance.PlaySound(SoundManager.SoundName.EnemyHit);
   }
 }

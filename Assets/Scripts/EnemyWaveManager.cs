@@ -94,6 +94,7 @@ public class EnemyWaveManager : MonoBehaviour
   {
     remainingEnemySpawnCount = 5 + (3 * waveNumber);
     waveNumber++;
+    SoundManager.Instance.PlaySound(SoundManager.SoundName.EnemyWaveStarting);
     OnWaveNumberChanged?.Invoke(this, EventArgs.Empty);
   }
 

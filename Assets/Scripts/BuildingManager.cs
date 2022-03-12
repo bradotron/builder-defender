@@ -32,6 +32,7 @@ public class BuildingManager : MonoBehaviour
 
   private void hqBuilding_HealthSystem_OnDied(object sender, EventArgs e)
   {
+    SoundManager.Instance.PlaySound(SoundManager.SoundName.GameOver);
     GameOverUI.Instance.Show();
   }
 
@@ -48,6 +49,7 @@ public class BuildingManager : MonoBehaviour
           {
             ResourceManager.Instance.SpendResources(activeBuildingType.constructionResourceCosts);
             BuildingConstruction.CreateAt(Utils.GetMouseWorldPosition(), activeBuildingType);
+            SoundManager.Instance.PlaySound(SoundManager.SoundName.BuildingPlaced);
           }
           else
           {
