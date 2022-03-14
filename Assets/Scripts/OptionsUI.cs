@@ -54,7 +54,9 @@ public class OptionsUI : MonoBehaviour
 
   private void mainMenuBtn_OnClick()
   {
-
+    Time.timeScale = 1f;
+    
+    GameSceneManager.Load(GameSceneManager.Scene.MainMenuScene);
   }
 
   private void updateCurrentSoundText()
